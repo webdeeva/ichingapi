@@ -35,7 +35,7 @@ const generateHexagrams = () => {
     const resulting = hexagrams[Math.floor(Math.random() * hexagrams.length)].split("").map(Number);
 
     const changing = initial.map((line, index) => (line !== resulting[index] ? index + 1 : 0)).filter(line => line !== 0);
-
+    const changingLinesString = changing.join(","); // Convert changingLines array to a string
     const formattedInitial = initial.map(formatLine).join(",");
     const formattedResulting = resulting.map(formatLine).join(",");
 
@@ -45,7 +45,7 @@ const generateHexagrams = () => {
     return {
          initialHexagram: formattedInitial,
         resultingHexagram: formattedResulting,
-        changingLines: changing,
+        changingLines: changingLinesString, // Assign the string representation
         initialHexagramNumber,
         resultingHexagramNumber,
         initialHexagramSymbol: hexagramSymbols[initialHexagramNumber - 1],
