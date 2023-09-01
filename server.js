@@ -31,7 +31,13 @@ const hexagramNumber = (hexagram) => {
 const formatLine = (line) => (line === 0 ? " _ _" : "____");
 
 const calculateChangingLines = (initial, resulting) => {
-    return initial.map((line, index) => (line !== resulting[index] ? index + 1 : 0)).filter(line => line !== 0);
+    const changing = [];
+    for (let i = initial.length - 1; i >= 0; i--) {
+        if (initial[i] !== resulting[i]) {
+            changing.push(initial.length - i);
+        }
+    }
+    return changing;
 };
 
 const generateHexagrams = () => {
