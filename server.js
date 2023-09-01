@@ -30,11 +30,15 @@ const hexagramNumber = (hexagram) => {
 
 const formatLine = (line) => (line === 0 ? " _ _" : "____");
 
+const calculateChangingLines = (initial, resulting) => {
+    return initial.map((line, index) => (line !== resulting[index] ? index + 1 : 0)).filter(line => line !== 0);
+};
+
 const generateHexagrams = () => {
     const initial = hexagrams[Math.floor(Math.random() * hexagrams.length)].split("").map(Number);
     const resulting = hexagrams[Math.floor(Math.random() * hexagrams.length)].split("").map(Number);
 
-    const changing = initial.map((line, index) => (line !== resulting[index] ? index + 1 : 0)).filter(line => line !== 0);
+    const changing = calculateChangingLines(initial, resulting);
     const changingLinesString = changing.join(","); // Convert changingLines array to a string
     const formattedInitial = initial.map(formatLine).join(",");
     const formattedResulting = resulting.map(formatLine).join(",");
